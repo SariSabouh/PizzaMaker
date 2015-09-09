@@ -30,14 +30,25 @@ public class ControlPanel {
 
 	public float setOrderTotal(ArrayList<Pizza> pizzas) {
 		for(int i = 0; i < numPizzas; i++){
-			orderTotal = pizzas.get(i).getPizzaTotal();
+			orderTotal += pizzas.get(i).getPizzaTotal();
 			reciept += pizzas.get(i).toString();
 		}
-		orderTotal += orderTotal*0.1;
 		return orderTotal;
 	}
 	
+	public void removePizza(float pizzaTotal, ArrayList<Pizza> pizzas){
+		for(int i = 0; i < numPizzas; i++){
+			if(pizzas.get(i).getPizzaTotal() == pizzaTotal){
+				orderTotal -= pizzaTotal;
+				reciept += "\nPizza Removed:";
+				reciept += pizzas.get(i).toString();
+			}
+		}
+	}
+	
 	public float getOrderTotal(){
+		reciept += "\nTaxes: ";
+		orderTotal += orderTotal*0.1;
 		return orderTotal;
 	}
 
